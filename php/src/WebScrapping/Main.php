@@ -8,7 +8,7 @@ namespace Chuva\Php\WebScrapping;
 class Main {
 
   /**
-   * Main runner, instantiates a Scrapper and runs.
+   * main runner, instantiates a Scrapper and runs.
    */
   public static function run(): void {
     $dom = new \DOMDocument('1.0', 'utf-8');
