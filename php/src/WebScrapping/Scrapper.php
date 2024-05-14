@@ -14,28 +14,38 @@ class Scrapper {
    * Loads paper information from the HTML and returns the array with the data.
    */
   public function scrap(\DOMDocument $dom): array {
-
     $papers = [];
+    
+    // Use querySelectorAll para obter todos os elementos <a> com a classe 'paper-card'
+    $elements = $dom->getElementsByTagName('a');
+    print("boaelements ");
 
-    $xpath = new \DOMXPath($dom);
-    $elements = $xpath -> query('//a[contains(@class, "paper-card")]');
+
+
 
     foreach ($elements as $element){
-      if (strpos($element->GetAttribute('class'), "paper-card") == true){
+      print("boalaco ");
 
         $id = $element -> getElementsByTagName('div') -> item(3) -> getElementsByTagName('div') -> item(1) -> textContent;
-        $title = $element -> getElementsByTagName('h4') -> item(0) -> textContent;
-        $type = $element -> getElementsByTagName('div') -> item(1) -> textContent;
-        $author = $element  -> getElementsByTagName('div') -> item(0) -> textContent;
+        print("boaid ");
+        $title = $element->querySelector('h4')->textContent;
+        print("boatitle ");
 
-      }
+        $type = $element->querySelector('div:nth-child(2)')->textContent;
+        print("boatype ");
 
-      $paper = new Paper($id, $title, $type, $authors);
-      $papers[] = $paper;
+        $author = $element->querySelector('div:first-child')->textContent;
+        print("boaauthor");
 
+
+        $paper = new Paper($id, $title, $type, $author);
+        $papers[] = $paper;
+
+        print("boa");
     }
 
     return $papers;
-  }
+}
+
 
 }
