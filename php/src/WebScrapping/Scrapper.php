@@ -18,37 +18,28 @@ class Scrapper {
     
     // Use querySelectorAll para obter todos os elementos <a> com a classe 'paper-card'
     $elements = $dom->getElementsByTagName('a');
-    print("boaelements ");
-
-
-
-
+    $I = 0;
     foreach ($elements as $element){
-      print("boalaco ");
+      
+        print("\n[" . ++$I . "]:\n");
 
-        //$id = $element -> getElementsByTagName('div') -> item(3) -> getElementsByTagName('div') -> item(1) -> textContent;
-        print("boaid ");
+        $idElement = $element->getElementsByTagName('div')->item(1)->getElementsByTagName('div')->item(1);
+        $id = $idElement->textContent;
 
-        //$title = $element->querySelector('h4')->textContent;
-        print("boatitle ");
+        $titleElement = $element->getElementsByTagName('h4')->item(0);
+        $title = $titleElement->textContent;
 
-        //$type = $element->querySelector('div:nth-child(2)')->textContent;
-        print("boatype ");
+        $authorsElement = $element->getElementsByTagName('div')->item(0);
+        $authors = $authorsElement->textContent;
 
-        $author = $card->getElementsByTagName('div')->item(0)->textContent;
+        $typeElement = $element->getElementsByTagName('div')->item(2)->getElementsByTagName('div')->item(0);
+        $type = $typeElement->textContent;
 
-        //$author = $element->querySelector('div:first-child')->textContent;
-        print("boaauthor");
-
-
-        $paper = new Paper($id, $title, $type, $author);
+        $paper = new Paper($id, $title, $type, $authors);
+        
         $papers[] = $paper;
-
-        print("boa");
     }
 
     return $papers;
-}
-
-
+  }
 }
