@@ -26,15 +26,18 @@ class Scrapper {
     foreach ($elements as $element){
       print("boalaco ");
 
-        $id = $element -> getElementsByTagName('div') -> item(3) -> getElementsByTagName('div') -> item(1) -> textContent;
+        //$id = $element -> getElementsByTagName('div') -> item(3) -> getElementsByTagName('div') -> item(1) -> textContent;
         print("boaid ");
-        $title = $element->querySelector('h4')->textContent;
+
+        //$title = $element->querySelector('h4')->textContent;
         print("boatitle ");
 
-        $type = $element->querySelector('div:nth-child(2)')->textContent;
+        //$type = $element->querySelector('div:nth-child(2)')->textContent;
         print("boatype ");
 
-        $author = $element->querySelector('div:first-child')->textContent;
+        $author = $card->getElementsByTagName('div')->item(0)->textContent;
+
+        //$author = $element->querySelector('div:first-child')->textContent;
         print("boaauthor");
 
 
